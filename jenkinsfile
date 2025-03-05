@@ -1,0 +1,31 @@
+pipeline {
+    agent : any
+    environment {
+        TEST = "test_value"
+        TEST1 = "test_value"
+        TEST2 = "test_value"
+        TEST3 = "test_value"
+    }
+    
+    stages {
+         stage('Build') {
+             steps {
+                sh ''' 
+                    #!/bin/bash
+                    ls 
+                    sleep 5
+
+                '''
+
+
+            }
+         }
+         stage('Build') {
+             steps {
+
+
+            }
+         }
+    }
+    
+}
