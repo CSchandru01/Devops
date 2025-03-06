@@ -1,16 +1,6 @@
 pipeline {
     agent : any
-    environment {
-        TEST = "test_value"
-    }
-    parameters {
-        string(name:'PARAM_STRING', defaultValue: 'input_param', description: 'This is ')
-        booleanParam(name: 'TOGGLE', defaultValue: true, description: 'toggle this value')
-    }
-
-    trigger {
-            cron('*/59 * * * *')
-        }
+    
     stages {
          stage('Checkout') {
              steps {
