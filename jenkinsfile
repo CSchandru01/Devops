@@ -2,28 +2,31 @@ pipeline {
     agent : any
     environment {
         TEST = "test_value"
-        TEST1 = "test_value"
-        TEST2 = "test_value"
-        TEST3 = "test_value"
     }
-    
+    parameters {
+        string(name:'PARAM_STRING', defaultValue: 'input_param', description: 'This is ')
+        booleanParam(name: 'TOGGLE', defaultValue: true, description: 'toggle this value')
+    }
+
+    trigger {
+            cron('*/59 * * * *')
+        }
     stages {
-         stage('Build') {
+         stage('Checkout') {
              steps {
-                sh ''' 
-                    #!/bin/bash
-                    ls 
-                    sleep 5
-
-                '''
-
-
+                checkout ([
+                $class: 'GitSCM',
+                Branches: [[name: '*/main']],
+                userRemoteConfigs: [[ url: '<put git ulr>',
+                credentials: 'github'
+                ]]])
             }
          }
          stage('Build') {
              steps {
-
-
+                sh'''
+                ls-lrt
+                '''
             }
          }
     }
