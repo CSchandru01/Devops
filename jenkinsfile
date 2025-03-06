@@ -15,10 +15,13 @@ pipeline {
          stage('Build') {
              steps {
                 sh'''
+                sudo apt update 
+                sudo apt install -y maven
                 ls-lrt
+                cd <// file path>
+                maven clean install
                 '''
             }
          }
-    }
-    
+    } 
 }
