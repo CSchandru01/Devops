@@ -23,8 +23,41 @@ pipeline {
                 ]]])
             }
          }
+          stage('demo') {
+             steps {
+                // THIS IS ACCESSING CREDENTIALS TYPE USERNAME AND PASSWORD
+                withCredentials([usernamePassword(credentialId: 'test_ID', usernameVariable: 'USER' passwordVariable: 'password')]){
+                     sh '''
+                            echo USER
+                            echo password    //PASSWORD WILL NOT PRINT
+                        '''
+                }
+
+                // THIS IS ACCESSING CREDENTIALS TYPE SECRATE TEXT
+                withCredentials([string (credentialId: 'test_ID', Variable: 'USER')]){
+                     sh '''
+                            cat USER
+                        '''
+                }
+
+                // THIS IS ACCESSING CREDENTIALS TYPE FILE
+                withCredentials([file (credentialId: 'test_ID', Variable: 'FILE_PATH')]){
+                     sh '''
+                            cat FILE_PATH
+                        '''
+                }
+
+                / THIS IS ACCESSING CREDENTIALS TYPE SSH PRIVATE KEY
+                withCredentials([sshUserPrivateKey (credentialId: 'ssh_peam', usarnameVariable: 'USER', keyFileVariable: 'SSH_KEY')]){
+                         echo $USER  $SSH_KEY
+                        sh '''
+                            cat $USER
+                        '''
+                }
+            }
          stage('Build') {
              steps {
+                withCredentials()
                 sh'''
                 sudo apt update 
                 sudo apt install -y maven
