@@ -1,0 +1,61 @@
+docker pull <image name>        //to pull the image
+docker images  OR  docker ls    // to list the images
+docker rmi <i-name / i-ID>:tag  //to delete the image
+docker image rm <i-name>
+docker inspect <object-ID od Object name>  //detail view of that object
+docker network ls
+docker container ls
+docker tag <old name:tag> <new name:tag>    //to rename
+docker rmi -F <i-ID>    //to delete image having diff name and tag but same ID
+docker push <accountname/imagename>:tag
+
+docker run <i-name or I-ID>:tag    //to create a container
+docker ps
+docker ps -a  / docker container ls -a
+docker rm <container name /i-ID>
+docker rm -f <container name / id>
+
+docker run -d <0-name/i-ID>:tag
+docker run -d -p 8090:8080 -p 50000:50000 <i-name>:tag
+docker stop <container name>
+
+docker run -d --name <my_container> -p 8080:8080 -p 50000:50000 <iname>
+docker log <container Id>
+docker log -f <caontainer id>
+
+docker rm $(docker ps -aq)    //delete all docker container
+
+docker image prune
+docker system prune
+docker container prune
+
+docker run -it -d --name my_ubuntu ubuntu
+    i - interactive
+    t - terminal (tty)
+    d - detach mode
+
+docker attach <container id> it will open that container to use
+  -> exit  it will kill (container will stop)
+  -> without killing wnat to exit means press  CTR+P+Q
+
+docker stats    -> to check all the container tacking memory
+docker top <my_ubuntu> -> to check indivisual container taking memory
+
+docker exec <container name> ls
+
+docker exec -it my_ubuntu /bin/bash     //best way to enter container, it will not kill containe after exiting
+docker exes -it my_ununtu bash
+
+docker build -t <name>:version .
+docker build -t <name>:version -f <custom name> .
+
+docker run -it --rm --name my-ubuntu my_ubuntu_image:version     //when container stop automatically it will delete that container
+
+docker network creat --driver bridge <network name>
+
+docker run -it -d --name <my_ubuntu> --network <network name> <image name>:version
+
+
+
+
+
