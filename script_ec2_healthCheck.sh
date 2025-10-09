@@ -1,4 +1,5 @@
 #!/bin/bash
+<<<<<<< HEAD
 
 # Usage: $0 <percentage_to_check>
 count=0
@@ -26,3 +27,8 @@ done <<< "$(df -h)
 if [[ $found -eq 0 ]]; then
 	echo "   ALL DISK USAGE IS LESS THAN 80%"
 fi
+=======
+for percent in $(df | sed '1d' | awk '{print $(NF-1)}' | sed 's/%//g'); do
+  echo "percent"
+done
+>>>>>>> 63faf5fc6991dc512e6ccbfd6ea62751a154d1aa
