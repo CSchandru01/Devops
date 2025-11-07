@@ -8,3 +8,14 @@ module "vpc" {
     clucter_name            = "var.clucter_name"
   
 }
+
+module "ec2" {
+    source = "./moduls/ec2"
+    
+    demo_instance_ami   = "var.demo_instance_ami"
+    demo_instance_type  = "var.demo_instance_type"
+    instace_count       = "var.instace_count"
+    key_name            = "var.key_name"
+    clustername         = "var.clucter_name"
+  
+}
