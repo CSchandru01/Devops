@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Deployment
+metadata:
+  name: my-demo-app-deployment
+  labels:
+    app: My-demo-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: My-demo-app
+  template:
+    metadata:
+      labels:
+        app: My-demo-app
+    spec:
+      containers:
+      - name: my-demo-app-container
+        image: my-demo-app-image:latest
+        ports:
+        - containerPort: 8000
+ 
+
+ #       env:
+ #      - name: ENVIRONMENT
+ #         value: "production" 
+ #       - name: LOG_LEVEL
+ #         value: "info" 
+ #       resources:
+ #         limits:
+ #           memory: "512Mi"
+ #           cpu: "500m"
+ #         requests:
+ #           memory: "256Mi"
+ #           cpu: "250m"
+ #      livenessProbe:
+ #     httpGet: 
