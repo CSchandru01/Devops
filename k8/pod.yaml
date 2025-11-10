@@ -1,3 +1,4 @@
+# this is a pod definition file for nginx server
 apiVerrsion: V1
 kind: pod
 metadata: 
