@@ -1,6 +1,6 @@
 1) pod
-2)deployement
-3)service
+2) deployement
+3) service
 
 
 kubectl apply -f service.yaml  - service will be created
