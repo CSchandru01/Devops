@@ -1,4 +1,5 @@
-#!/bin/bash 
+# this is a shell script to install jdk-17 and maven-3.9.6 on ubuntu server
+!/bin/bash 
 echo "STEP1: Update the ubuntu && install - 'unzip' and 'jdk-17' " 
 sudo apt update -y && sudo apt install -y unzip openjdk-17-jdk
 
@@ -13,3 +14,4 @@ sudo chmod 777 /usr/local/sbin/mvn
 
 echo
 echo "_______________ jdk and maven installed _______________" 
+

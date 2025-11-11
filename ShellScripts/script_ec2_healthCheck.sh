@@ -1,7 +1,7 @@
-#!/bin/bash
-<<<<<<< HEAD
+# this script checks the disk usage of the EC2 instance and alerts if any disk usage exceeds the specified percentage
 
-# Usage: $0 <percentage_to_check>
+!/bin/bash
+ Usage: $0 <percentage_to_check>
 count=0
 found=0
 
@@ -21,14 +21,9 @@ while read line; do
 		echo "Alert: $DISK_NAME usage is above ${1}% (${USE_PERCENTAGE}%)"
 		echo "  TOTAL: $TOTAL_SIZE"
 		echo "  USER:  $USED_SIZE"
-	if
+	fi
 done <<< "$(df -h)
 
 if [[ $found -eq 0 ]]; then
 	echo "   ALL DISK USAGE IS LESS THAN 80%"
 fi
-=======
-for percent in $(df | sed '1d' | awk '{print $(NF-1)}' | sed 's/%//g'); do
-  echo "percent"
-done
->>>>>>> 63faf5fc6991dc512e6ccbfd6ea62751a154d1aa
