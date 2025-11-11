@@ -17,5 +17,27 @@ module "ec2" {
     instace_count       = "var.instace_count"
     key_name            = "var.key_name"
     clustername         = "var.clucter_name"
+}
+
+module "eks" {
+    source = "./moduls/eks"
+    
+    cluster_name = var.clucter_name
+    eks_version  = var.eks_version
+    vpc_id       = module.vpc.vpc_id
+    subnet_ids   = module.vpc.private_subnet_ids
+
+    node_groups = var.node_groups
+    {
+        demo_node_group = {
+            instance_types = ["t3.medium"]
+            capacity_type  = "ON_DEMAND"
+            scaling_config = {
+                desired_size = 2
+                min_size     = 1
+                max_size     = 3
+            }
+        }
+    }
   
 }

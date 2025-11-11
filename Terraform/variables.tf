@@ -49,5 +49,35 @@ variable "instace_count" {
 variable "key_name" {
     description = "Key pair name for EC2 instances"
     type        = string
+}
+
+variable "eks_version" {
+    description = "EKS cluster version"
+    type        = string
+    default     = "1.27"
+}
+
+variable "node_groups" {
+    description = "EKS Node Groups configuration"
+    type        = map(object({
+        instance_types = list(string)
+        capacity_type  = string
+        scaling_config = object({
+            desired_size = number
+            min_size     = number
+            max_size     = number
+        })
+    }))
+    default     = {
+        demo_node_group = {
+            instance_types = ["t3.medium"]
+            capacity_type  = "ON_DEMAND"
+            scaling_config = {
+                desired_size = 2
+                min_size     = 1
+                max_size     = 3
+            }
+        }
+    }
   
 }
