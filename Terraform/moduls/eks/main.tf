@@ -67,14 +67,14 @@ resource "aws_eks_node_group" "main" {
     for_each = var.node_groups
 
     cluster_name    = aws_eks_cluster.main.name
-    node_group_name = each.key)
+    node_group_name = each.key
     node_role_arn   = aws_iam_role.node_role.arn
     subnet_ids      = var.subnet_ids    
 
     scaling_config {
-        desired_size = var.node_group_desired_size
-        max_size     = var.node_group_max_size
-        min_size     = var.node_group_min_size
+        desired_size = each.value.scaling_config.desired_size
+        max_size     = each.value.scaling_config.max_size
+        min_size     = each.value.scaling_config.min_size   
     }
 
     depends_on = [

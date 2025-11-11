@@ -19,7 +19,6 @@ resource "aws_subnet" "demo_vpc_private_subnet" {
 
   }
  }
-}
 
 resource "aws_subnet" "demo_vpc_public_subnet" {
   vpc_id            = aws_vpc.demo_vpc.id
