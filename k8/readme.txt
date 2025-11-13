@@ -8,3 +8,5 @@ kubectl get svc                - you see the details about service
 kubectl get svc -v=9           - you will get entire info about service (how trafic is going)
 
 to access ingress insatll ingeress controller first
+
+app-config >> 

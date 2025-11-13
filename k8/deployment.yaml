@@ -17,9 +17,16 @@ spec:
       containers:
       - name: my-demo-app-container
         image: my-demo-app-image:latest
+        volumeMounts:
+        - name: app-config-volume
+          mountPath: /opt 
         ports:
         - containerPort: 8000
- 
+      volumes:
+      - name: app-config-volume
+        configMap:
+          name: app-config
+
 
  #       env:
  #      - name: ENVIRONMENT
