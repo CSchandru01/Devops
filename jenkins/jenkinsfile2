@@ -1,0 +1,38 @@
+pipelibe{
+    agent any
+    stages {
+        stade('Checkout') {
+            steps {
+                echo 'Checking out code...'
+            }
+        }
+        stage('scan') {
+            steps {
+               withSonarQubeEnv('My SonarQube Server') {
+                   sh """
+                     sonar-scanner \
+                          -Dsonar.projectKey=my_project \
+                          -Dsonar.sources=.
+                   """
+                   
+                   'sonar-scanner -Dsonar.projectKey=my_project -Dsonar.sources=.'
+               }
+            }
+        }
+        stage('Build') {
+            steps {
+                echo 'Building...'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing...'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying...'
+            }
+        }
+    }
+}
