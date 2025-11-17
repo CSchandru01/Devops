@@ -18,3 +18,16 @@ spec:
         image: project1-image:latest
         ports:
         - containerPort: 5000
+
+        env:
+        - name: APP_MESSAGE
+          valueFrom:
+            configMapKeyRef:
+              name: project1-config
+              key: APP_MESSAGE
+        - name: SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: project1-secret
+              key: Secrate_Key
+              

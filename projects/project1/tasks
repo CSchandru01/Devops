@@ -1,0 +1,15 @@
+
+task : implement kuberneres ConfigMags and Secret
+    1) modify app.py (developer)
+    2) Rebuild and push docker image 
+        -> docker build -t <dockehub name.app-k8s-app:v3> .
+        -> docker push < dockerhub/app-k8s-app:v3>
+    3) app-config and app-secret created in k8s cluster
+        -> Create a ConfigMags -> store normal data
+        -> Create a Secret -> store sensitive data
+    4) Update Deployment to use ConfigMag and Secret
+    5) apply changes to k8s cluster
+        -> kubectl apply -f configmap.yaml
+        -> kubectl apply -f secret.yaml
+        -> kubectl apply -f deployment.yaml
+
