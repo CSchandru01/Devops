@@ -13,3 +13,13 @@ task : implement kuberneres ConfigMags and Secret
         -> kubectl apply -f secret.yaml
         -> kubectl apply -f deployment.yaml
 
+task: fix a failing jenkins pipeline caused by docker failure 
+detail: your jenkins pipeline suddenly fails at the docker build stage  
+    1) check requirements.txt:- update your earlier stable version or fix any version conflicts
+    2) check dockerfile for any syntax errors or incorrect commands
+    3) check jenkinsfile for any misconfigurations in the docker build stage
+    4) check jenkins agent/node has docker installed and running
+    5) check disk space on jenkins agent/node
+    6) check network connectivity from jenkins agent/node to docker registry
+    7) check docker daemon logs for any specific error messages
+
