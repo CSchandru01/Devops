@@ -23,3 +23,13 @@
             -> Schedule pattern -> cron(30 2 * * ? *)
             -> target -> lambda function -> auto-start-ec2
             -> save -> done
+ 
+ Task-3: write scripy that checks  (health_checkup.py)
+    1) cpu Usage
+    2) memory Usage
+    3) disk Usage
+    4) top 5 processes consuming cpu
+  and send an aleart only of
+    1) cpu > 80%
+    2) memoty > 80%
+    3) disk > 85%
