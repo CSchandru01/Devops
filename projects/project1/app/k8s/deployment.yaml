@@ -26,15 +26,7 @@ spec:
             memory: "512Mi"
             cpu: "500m"
 
-        env:
-        - name: APP_MESSAGE
-          valueFrom:
-            configMapKeyRef:
-              name: project1-config
-              key: APP_MESSAGE
-        - name: SECRET_KEY
-          valueFrom:
-            secretKeyRef:
-              name: project1-secret
-              key: Secrate_Key
+        envFrom:
+        - configMapRef:
+            name: project1-config
               

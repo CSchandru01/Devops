@@ -28,4 +28,13 @@ Task: add resource request and limit in k8 deployment
         today we fix this 
     1) analyze app resource usage using kubectl top pod <pod-name>
     2) update deployment.yaml to add resource requests and limits
-       
+
+Task: Update deployemt to use ConfigMap and Secret
+    1) create configmap.yaml to store non-sensitive data
+    2) create secret.yaml to store sensitive data
+    3) update deployment.yaml to mount configmap and secret as env variables or volume mounts
+    4) apply changes to k8s cluster
+        -> kubectl apply -f configmap.yaml
+        -> kubectl apply -f secret.yaml
+        -> kubectl apply -f deployment.yaml
+
