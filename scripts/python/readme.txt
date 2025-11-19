@@ -33,3 +33,8 @@
     1) cpu > 80%
     2) memoty > 80%
     3) disk > 85%
+
+Task-4) add resource request and limit in k8 deployment
+    -> current deployemt.yaml is weak no production-ready app should run without resource policies
+        today we fix this 
+        

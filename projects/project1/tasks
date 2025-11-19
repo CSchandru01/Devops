@@ -23,3 +23,9 @@ detail: your jenkins pipeline suddenly fails at the docker build stage
     6) check network connectivity from jenkins agent/node to docker registry
     7) check docker daemon logs for any specific error messages
 
+Task: add resource request and limit in k8 deployment
+    -> current deployemt.yaml is weak no production-ready app should run without resource policies
+        today we fix this 
+    1) analyze app resource usage using kubectl top pod <pod-name>
+    2) update deployment.yaml to add resource requests and limits
+       
