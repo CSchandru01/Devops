@@ -18,6 +18,11 @@ spec:
         image: project1-image:latest
         ports:
         - containerPort: 5000
+
+        envFrom:
+        - configMapRef:
+            name: project1-config
+
         resources:
           requests:
             memory: "256Mi"
@@ -26,7 +31,29 @@ spec:
             memory: "512Mi"
             cpu: "500m"
 
-        envFrom:
-        - configMapRef:
-            name: project1-config
+# Add liveness and readiness probes to ensure application health monitoring
+# These probes help Kubernetes determine when to restart containers or stop sending traffic to unhealthy pods
+#liveness and readiness probes help maintain application availability and reliability in production environments
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 5000
+          initialDelaySeconds: 15
+          periodSeconds: 20 
+          timeoutSeconds: 5
+          failureThreshold: 3
+          successThreshold: 1
+        readinessProbe:
+          httpGet:
+           path: 
+            port: 5000
+          initialDelaySeconds: 10
+          periodSeconds: 15
+          timeoutSeconds: 5
+          failureThreshold: 3
+          successThreshold: 1
+
+        
+
+        
               

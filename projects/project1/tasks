@@ -1,5 +1,5 @@
 
-task : implement kuberneres ConfigMags and Secret
+task-1 : implement kuberneres ConfigMags and Secret
     1) modify app.py (developer)
     2) Rebuild and push docker image 
         -> docker build -t <dockehub name.app-k8s-app:v3> .
@@ -13,7 +13,7 @@ task : implement kuberneres ConfigMags and Secret
         -> kubectl apply -f secret.yaml
         -> kubectl apply -f deployment.yaml
 
-task: fix a failing jenkins pipeline caused by docker failure 
+task-2: fix a failing jenkins pipeline caused by docker failure 
 detail: your jenkins pipeline suddenly fails at the docker build stage  
     1) check requirements.txt:- update your earlier stable version or fix any version conflicts
     2) check dockerfile for any syntax errors or incorrect commands
@@ -23,13 +23,13 @@ detail: your jenkins pipeline suddenly fails at the docker build stage
     6) check network connectivity from jenkins agent/node to docker registry
     7) check docker daemon logs for any specific error messages
 
-Task: add resource request and limit in k8 deployment
+Task-3: add resource request and limit in k8 deployment
     -> current deployemt.yaml is weak no production-ready app should run without resource policies
         today we fix this 
     1) analyze app resource usage using kubectl top pod <pod-name>
     2) update deployment.yaml to add resource requests and limits
 
-Task: Update deployemt to use ConfigMap and Secret
+Task-4: Update deployemt to use ConfigMap and Secret
     1) create configmap.yaml to store non-sensitive data
     2) create secret.yaml to store sensitive data
     3) update deployment.yaml to mount configmap and secret as env variables or volume mounts
@@ -38,3 +38,10 @@ Task: Update deployemt to use ConfigMap and Secret
         -> kubectl apply -f secret.yaml
         -> kubectl apply -f deployment.yaml
 
+Task-5: add liveness and readiness probes to k8s deployment
+    1) analyze app health check endpoints
+    2) update deployment.yaml to add liveness and readiness probes
+    3) apply changes to k8s cluster
+        -> kubectl apply -f deployment.yaml
+        kubectl describe deployment <deployment-name> to verify probes are configured
+        you must see liveness succeded and readiness succeded
