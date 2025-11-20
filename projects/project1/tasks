@@ -38,10 +38,22 @@ Task-4: Update deployemt to use ConfigMap and Secret
         -> kubectl apply -f secret.yaml
         -> kubectl apply -f deployment.yaml
 
-Task-5: add liveness and readiness probes to k8s deployment
+Task-5: Add liveness and readiness probes to k8s deployment
+        ->liveness:- if your app is hanga, stuck or dead, restart it.
+        ->readiness:- if your app is not ready to serve traffic, stop sending traffic to it.no customer-facing downtime
     1) analyze app health check endpoints
     2) update deployment.yaml to add liveness and readiness probes
     3) apply changes to k8s cluster
         -> kubectl apply -f deployment.yaml
         kubectl describe deployment <deployment-name> to verify probes are configured
         you must see liveness succeded and readiness succeded
+        
+task-6: Create Horizontal Pod Autoscaler (HPA) for k8s deployment
+    1) analyze app resource usage using kubectl top pod <pod-name>
+    2) create hpa.yaml to define HPA configuration based on cpu/memory usage
+    3) apply hpa to k8s cluster
+        -> kubectl apply -f hpa.yaml
+    4) verify HPA is working
+        -> kubectl get hpa <hpa-name>
+        -> generate load on app to trigger scaling 
+        -> kubectl get pods to see new pods being created
