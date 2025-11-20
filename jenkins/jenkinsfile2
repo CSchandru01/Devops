@@ -2,11 +2,10 @@ pipelibe{
     agent any
     stages {
         stade('Checkout') {
-            steps {
-                echo 'Checking out code...'
+            steps { Checkout scm
             }
         }
-        stage('scan') {
+        stage('scan code with sonarQube') {
             steps {
                withSonarQubeEnv('My SonarQube Server') {
                    sh """
@@ -19,17 +18,22 @@ pipelibe{
                }
             }
         }
-        stage('Build') {
+        stage('Build docker image') {
             steps {
                 echo 'Building...'
             }
         }
-        stage('Test') {
+        stage ('scan image for vulnerabilities and malware and push to registry') {
+            steps {
+                echo 'Scanning...'
+            }
+        }
+        stage('Test application ') {
             steps {
                 echo 'Testing...'
             }
         }
-        stage('Deploy') {
+        stage('Deploy application to kubernetes cluster') {
             steps {
                 echo 'Deploying...'
             }
