@@ -22,3 +22,15 @@ spec:
             - name: discovery.type
               value: single-node
 ---
+apiVersion: v1
+kind: service
+metadata:
+  name: elasticsearch
+  namespace: logging
+spec:
+  type: ClusterIP
+  ports:  
+    - port: 9200
+  selector:
+    app: elasticsearch
+    

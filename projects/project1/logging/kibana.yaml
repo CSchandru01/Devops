@@ -21,3 +21,15 @@ spec:
           env:
             - name: ELASTICSEARCH_HOSTS
               value: "http://elasticsearch.logging.svc.cluster.local:9200"
+---
+apiVersion: v1
+kind: service
+metadata:
+  name: kibana
+  namespace: logging
+spec:
+  type: ClusterIP
+  ports:
+    - port: 5601  
+  selector:
+    app: kibana 
