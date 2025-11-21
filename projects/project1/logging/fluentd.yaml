@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fluentd
+  namespace: logging
+spec:
+  selector:
+    matchLabels:
+      app: fluentd
+  template:
+    metadata:
+      labels:
+        app: fluentd
+    spec:
+      containers:
+        - name: fluentd
+          image: fluent/fluentd:v1.11-debian-1
+          env:
+            - name: FLUENT_ELASTICSEARCH_HOST
+              value: "elasticsearch.logging.svc.cluster.local"
+            - name: FLUENT_ELASTICSEARCH_PORT
+              value: "9200"
+          volumeMounts:
+            - name: varlog
+              mountPath: /var/log
+            - name: dockerconatainer
+              mountPath: /var/lib/docker/containers
+              readOnly: true
+
+        volumeMounts:
+          - name: varlog
+            hostPath: /var/log
+          - name: dockerconatainer  
+            hostPath: /var/lib/docker/containers
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fluentd
+  namespace: logging      
+spec:
+  type: ClusterIP
+  ports:
+    - port: 24224
+  selector:
+    app: fluentd          
