@@ -57,3 +57,9 @@ task-6: Create Horizontal Pod Autoscaler (HPA) for k8s deployment
         -> kubectl get hpa <hpa-name>
         -> generate load on app to trigger scaling 
         -> kubectl get pods to see new pods being created
+
+task-7: implement cetralized logging with EFS(elasticsearch+fluentd+KIBANA)
+    1) create a namespace
+        kubectl create namespace logging
+    2) deploy Elasticsearch(single node dev setup)
+     
