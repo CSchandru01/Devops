@@ -62,4 +62,12 @@ task-7: implement cetralized logging with EFS(elasticsearch+fluentd+KIBANA)
     1) create a namespace
         kubectl create namespace logging
     2) deploy Elasticsearch(single node dev setup)
+    3) deploy Fluentd as DaemonSet to collect logs from all nodes and forward to Elasticsearch
+    4) deploy Kibana to visualize logs from Elasticsearch
+    5) configure your app pods to send logs to Fluentd
+    6) verify logs are being collected and visualized in Kibana
+       kubectl get pods -n logging
+       access kibana UI and check logs http://<kibana-service-ip>:<kibana-port>
+
+
      
