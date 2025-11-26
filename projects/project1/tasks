@@ -69,5 +69,6 @@ task-7: implement cetralized logging with EFS(elasticsearch+fluentd+KIBANA)
        kubectl get pods -n logging
        access kibana UI and check logs http://<kibana-service-ip>:<kibana-port>
 
+task-8: updated configmap file as per dev enviroment 
 
-     
+    
