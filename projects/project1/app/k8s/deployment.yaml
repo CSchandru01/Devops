@@ -22,6 +22,8 @@ spec:
         envFrom:
         - configMapRef:
             name: project1-config
+        - secretRef:
+            name: project1-secret
 
         resources:
           requests:
