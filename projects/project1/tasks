@@ -71,4 +71,14 @@ task-7: implement cetralized logging with EFS(elasticsearch+fluentd+KIBANA)
 
 task-8: updated configmap file as per dev enviroment 
 
+task-9: CI-CD- Create a docker build and push script that jenkins will use in the pipeline
+    1) create a bash script docker-build-push.sh
+    2) make the script executable
+        -> chmod +x docker-build-push.sh
+    3) test the script locally
+    4) update jenkinsfile to call this script in the docker build stage
+    5) commit and push changes to repo
+
+
+
     
