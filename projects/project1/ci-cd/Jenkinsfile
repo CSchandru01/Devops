@@ -1,0 +1,55 @@
+pipeline{
+    agent any 
+
+    enviroment{
+        DOCKER_USERNAME = credentials('docker-username').username
+        DOCKER_PASSWORD = credentials('docker-password').password
+    }
+
+    stages{
+        stage('CHECKOUT'){
+            steps{
+                echo 'Pulling code from repository...'
+                checkout scm
+            }
+        stage("install dependencies"){
+            steps{
+                echo 'Installing dependencies...'
+                sh """
+                    python3 -m pip install -r app/requirements.txt
+                """
+            }
+        stage("run unit tests"){
+            steps{
+                echo 'Running unit tests...'
+                sh """
+                    python3 -m unittest discover -s app/tests
+                """
+            }
+        stage('Build Docker Image'){
+                steps{
+                    echo 'Building and pushing Docker image...'
+                    sh """
+                        chmod +x ci-cd/build_and_push.sh
+                        ./ci-cd/build_and_push.sh ${BUILD_NUMBER} 
+                    """
+                }       
+            }
+        stage('Deploy to Kubernetes'){
+            steps{
+                echo 'Deploying to Kubernetes...'
+                sh """
+                    chmod +x ci-cd/deploy.sh
+                    ./ci-cd/deploy.sh
+                """
+            }
+        }
+    }
+    post{
+        success{
+            echo 'BUILD SUCCESSFUL- Deployment completed.'
+        }
+        failure{
+            echo 'BUILD FAILED- Please check the logs.'
+    }
+}
