@@ -87,6 +87,11 @@ task-10: deploy.sh - create a bash script to deploy k8s manifests to cluster
     4) update jenkinsfile to call this script in the deploy stage
     5) commit and push changes to repo
 
+task-11: add monitoring for app
+    1) expose metrincs from the app
+    2) configure Prometheus scraping
+    3) deploy promotheus and grafana dashboard
+    4) verify everything with kubectl
 
 
     

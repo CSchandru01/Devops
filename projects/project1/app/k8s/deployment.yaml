@@ -18,6 +18,7 @@ spec:
         image: project1-image:latest
         ports:
         - containerPort: 5000
+        - containerPort: 9100 # Port for Prometheus metrics
 
         envFrom:
         - configMapRef:
@@ -47,7 +48,7 @@ spec:
           successThreshold: 1
         readinessProbe:
           httpGet:
-           path: 
+           path: /
             port: 5000
           initialDelaySeconds: 10
           periodSeconds: 15

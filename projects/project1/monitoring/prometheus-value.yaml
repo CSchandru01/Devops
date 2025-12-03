@@ -1,0 +1,13 @@
+server:
+  global:
+    scrape_interval: 10s
+
+  extraScapeConfigs:
+    - job_name: 'project1-app'
+      metrics_path: '/metrics'
+      Kubernetes_sd_configs:
+        - role: pod
+      relabel_configs:
+        - source_labels: [__meta_kubernetes_pod_label_app]
+          action: keep
+          regex: project1-app
